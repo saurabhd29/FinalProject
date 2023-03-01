@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -110,7 +111,7 @@ export default function NavBar() {
                 
 
                 <li>
-                  <a href="contact.html">Contact</a>
+                  <Link to="/Contact">Contact</Link>
                 </li>
               </ul>
             </div>

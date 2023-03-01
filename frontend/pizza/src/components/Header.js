@@ -89,7 +89,7 @@ export default function Header() {
                   {/* / logo  */}
                   {/* cart box */}
                   <div className="aa-cartbox">
-                    <Link to="/cart">
+                    <Link to="/MyCart">
                       <a className="aa-cart-link" href="#">
                         <span className="fa fa-shopping-basket" />
                         <span className="aa-cart-title">SHOPPING CART</span>

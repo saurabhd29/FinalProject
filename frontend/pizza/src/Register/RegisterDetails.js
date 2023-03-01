@@ -1,4 +1,4 @@
-
+// import axion from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,93 +6,62 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { URL } from '../config'
 
-import { useEffect } from "react";
 
 
-const ProfileDetails = () => {
-
-  const {userId}= sessionStorage;
-  const [curUser, setCurUser]= useState([])
+const RegisterDetails = () => {
   
-
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [mobileNo, setMobileNo] = useState("");
   const [address, setAddress] = useState("");
-  // const [role, setRole] = useState("customer");
+  const [role, setRole] = useState("customer");
+
   const navigate= useNavigate();
 
-
-  useEffect(()=>{
-
-
-  if(userId != undefined)
-  {
-  axios.get(`http://localhost:8080/users/${userId}`).then((response)=>{
-  //axios.get(`http://localhost:8080/users/${1}`).then((response)=>{
-  setCurUser(response.data.data);
-  setFirstName(response.data.data.firstName);
-  setLastName(response.data.data.lastName);
-  setEmail(response.data.data.email);
-  setMobileNo(response.data.data.mobileNo);
-  setAddress(response.data.data.address);
-
-  })
-}
-  else
-  {
-    
-    toast.warning("Login First")
-    
-    //navigate("/Login")
-  }
-
-  
-
-
-  },[]);
-
-
-    const EditUser= () =>{
+    const registerUser= () =>{
     if(firstName.length==0){ 
     toast.warning('please enter first name')
     }else if(lastName.length==0){
       toast.warning('please enter last Name ')}
     else if(email.length==0){
     toast.warning('please enter email')
-    }
-    else if(mobileNo.length==0){
+    }else if(password.length==0){
+    toast.warning('please enter Password')
+    }else if(confirmPassword.length==0){
+    toast.warning('please enter Confirm password')
+    }else if(mobileNo.length==0){
     toast.warning('please enter Mobile Number ')
     }else if(address.length==0){
     toast.warning('please enter address')
+    }else if(email.length==0){
+    toast.warning('please enter email')
     }else{ 
-      const body = 
-      {
-        userId,
+      const body = {
         firstName,
         lastName,
         email,
+        password,
         mobileNo,
         address,
-      }
+        role,
+                  }
             
 
-          const url= `${URL}/users/update`
-          axios.put(url, body).then((response) =>
+          const url= `${URL}/users/register`
+          axios.post(url, body).then((response) =>
           {
             
-
+            
             const result= response.data
             console.log(result)
             if(result['status']== 'success')
             {
-              toast.success('Successfully Updated')
-              navigate('/HomePage')
+              toast.success('Successfully registered new user')
+              navigate('/login')
             }
             else
             {
@@ -105,9 +74,6 @@ const ProfileDetails = () => {
         }   
 
   }
-
-
-
 
   const logoutUser= ()=> {
 
@@ -124,14 +90,14 @@ const ProfileDetails = () => {
 
   return (
     <div>
-      
+  
 
       <div className="row">
         <div className="col"></div>
         <div className="col">
           <div className="form">
           
-          <h1 className="title">Edit Profile</h1>
+          <h1 className="title">Register</h1>
               
               
               <div className="mb-3">
@@ -144,7 +110,6 @@ const ProfileDetails = () => {
                   }}
                   type="text"
                   className="form-control"
-                  Value={curUser.firstName}
                 />
               </div>
 
@@ -158,7 +123,6 @@ const ProfileDetails = () => {
                   }}
                   type="text"
                   className="form-control"
-                  Value={curUser.lastName}
                 />
               </div>
 
@@ -172,11 +136,34 @@ const ProfileDetails = () => {
                   }}
                   type="email"
                   className="form-control"
-                  Value={curUser.email}
                 />
               </div>
 
-            
+              <div className="mb-3">
+                <label htmlFor="" className="label-control">
+                  password
+                </label>
+                <input
+                onChange={(e)=>{
+                  setPassword(e.target.value)
+                }}
+                type="password"
+                className="form-control"
+                />
+              </div>    
+
+              <div className="mb-3">
+                <label htmlFor="" className="label-control">
+                  Confirm Password
+                </label>
+                <input
+                onChange={(e)=>{
+                  setConfirmPassword(e.target.value)
+                }}
+                type="password"
+                className="form-control"
+                />
+              </div> 
 
 
               <div className="mb-3">
@@ -187,9 +174,8 @@ const ProfileDetails = () => {
                 onChange={(e)=>{
                   setMobileNo(e.target.value)
                 }}
-                type="number"
+                type="text"
                 className="form-control"
-                Value={curUser.mobileNo}
                 />
               </div> 
 
@@ -204,19 +190,15 @@ const ProfileDetails = () => {
                 }}
                 type="text"
                 className="form-control"
-                Value={curUser.address}
                 />
               </div> 
 
               <div className="mb-3">
                 <div>
-                  Already Have an Account?
-                  <a href data-toggle="modal" data-target="#login-modal">Login Here</a>
-                        
-                          
+                  Already Have an Account? <Link to="/login">Login Here</Link>
                 </div>
-                <button onClick={EditUser} className="btn btn-primary">
-                  Update Profile
+                <button onClick={registerUser} className="btn btn-primary">
+                  Register
                 </button>
 
               </div> 
@@ -233,6 +215,4 @@ const ProfileDetails = () => {
   );
 };
 
-
-
-export default ProfileDetails
+export default RegisterDetails;

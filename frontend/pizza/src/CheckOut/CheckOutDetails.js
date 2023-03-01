@@ -54,16 +54,7 @@ export default function CheckOutDetails() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <div className="aa-checkout-single-bill">
-                                    <input
-                                      type="text"
-                                      placeholder="Company name"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
+                              
                               <div className="row">
                                 <div className="col-md-6">
                                   <div className="aa-checkout-single-bill">
@@ -153,17 +144,7 @@ export default function CheckOutDetails() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <div className="aa-checkout-single-bill">
-                                    <textarea
-                                      cols={8}
-                                      rows={3}
-                                      defaultValue={"Special Notes"}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
+                              
                             </div>
                           </div>
                         </div>
