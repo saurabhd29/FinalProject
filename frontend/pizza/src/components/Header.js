@@ -32,7 +32,7 @@ export default function Header() {
                     <div className="cellphone hidden-xs">
                       <p>
                         <span className="fa fa-phone" />
-                        +91-90112-46750 | Sujit Shinde
+                        +91-90112-46750 | Sujit Shinde 
                       </p>
                      
                     </div>
@@ -42,13 +42,14 @@ export default function Header() {
                   <div className="aa-header-top-right">
                     <ul className="aa-head-top-nav-right">
                       <li >
+                        <Link to="/MyOrders">My Orders</Link>
+                      </li>
+                      <li >
                         <Link to="/UserProfile">My Account</Link>
                       </li>
+                      
                       <li className="hidden-xs">
-                        <Link to="/WishList">WishList</Link>
-                      </li>
-                      <li className="hidden-xs">
-                        <Link to="/cart">My Cart</Link>
+                        <Link to="/MyCart">My Cart</Link>
                       </li>
                       <li className="hidden-xs">
                         <Link to="/Checkout">Checkout</Link>
