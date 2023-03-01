@@ -33,7 +33,7 @@ export default function CheckOutDetails() {
                           </div>
                           <div
                             id="collapseFour"
-                            className="panel-collapse collapse"
+                            className=""
                           >
                             <div className="panel-body">
                               <div className="row">
